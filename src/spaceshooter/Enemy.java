@@ -14,6 +14,7 @@ public class Enemy {
     private final int speed = 3;
 
     private boolean active;
+    private boolean reachedBottom;
 
     public Enemy(int x, int y) {
 
@@ -21,6 +22,7 @@ public class Enemy {
         this.y = y;
 
         active = true;
+        reachedBottom = false;
     }
 
     public void update() {
@@ -28,7 +30,9 @@ public class Enemy {
         y += speed;
 
         if (y > GamePanel.SCREEN_HEIGHT) {
+
             active = false;
+            reachedBottom = true;
         }
     }
 
@@ -65,6 +69,16 @@ public class Enemy {
         return active;
     }
 
+    public boolean reachedBottom() {
+        return reachedBottom;
+    }
+
+    public void deactivate() {
+
+        active = false;
+        reachedBottom = false;
+    }
+
     public int getX() {
         return x;
     }
@@ -80,7 +94,4 @@ public class Enemy {
     public int getHeight() {
         return height;
     }
-    public void deactivate() {
-    active = false;
-}
 }
